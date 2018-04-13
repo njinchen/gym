@@ -1,3 +1,5 @@
+Edit: I forked this over to change some of the grid parameters for my course in OMSCS regarding Machine Learning, specifically the reinforcement learning section.
+
 OpenAI Gym
 **********
 
