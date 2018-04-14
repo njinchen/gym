@@ -13,20 +13,27 @@ UP = 3
 MAPS = {
     "4x4": [
         "SFFF",
-        "FHFH",
+        "HFHF",
         "FFFH",
-        "HFFG"
+        "FHFG"
     ],
-    "8x8": [
-        "SFFFFFFF",
-        "FFFFFFFF",
-        "FFFHFFFF",
-        "FFFFFHFF",
-        "FFFHFFFF",
-        "FHHFFFHF",
-        "FHFFHFHF",
-        "FFFHFFFG"
-    ],
+    #Modified frozen lake example
+    "16x16": ["SFFFFFFFFFFFFFFF",
+     "FHFFFFFFFFFFFFFF",
+     "FFFFHHFFFFFFFFFF",
+     "FFFFFFFFFHHHFFFF",
+     "FFHFHFFFFFHFFFFF",
+     "FFFFFFFFFFFFFFFF",
+     "FHHFFFFFHFFFFFHH",
+     "HFFFFFFFFFFFFFFF",
+     "HFFFFFHFFFFFHFFF",
+     "FFFHHFFFHFFFFFHF",
+     "HHHFFHFFFFFFFHHF",
+     "FFHFFFFFFHHFFFFH",
+     "FFFFHFFFHFFFHHFF",
+     "FFHHFFFFHFFFFFHF",
+     "FFFFFHFFFFHFFFFH",
+     "FHFHHFFFFFHFFFFG"]
 }
 
 class FrozenLakeEnv(discrete.DiscreteEnv):

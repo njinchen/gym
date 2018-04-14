@@ -155,10 +155,10 @@ register(
 )
 
 register(
-    id='FrozenLake8x8-v0',
+    id='FrozenLake16x16-v0',
     entry_point='gym.envs.toy_text:FrozenLakeEnv',
-    kwargs={'map_name' : '8x8'},
-    max_episode_steps=200,
+    kwargs={'map_name' : '16x16'},
+    max_episode_steps=400,
     reward_threshold=0.99, # optimum = 1
 )
 

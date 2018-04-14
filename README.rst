@@ -1,4 +1,8 @@
-Edit: I forked this over to change some of the grid parameters for my course in OMSCS regarding Machine Learning, specifically the reinforcement learning section.
+Edit: I forked this over to change some of the grid parameters for my Machine Learning course in OMSCS regarding the topic of reinforcement learning.
+
+I changed in the gym/env/__init__.py to have a Frozen Lake example to have a 16x16 environment, and added the global MAPS 16x16 dictionary variable in gym/envs/toy_text/frozen_lake.py
+
+
 
 OpenAI Gym
 **********
