@@ -1,7 +1,8 @@
 from gym.envs.registration import registry, register, make, spec
-
+import numpy as np
 # Algorithmic
 # ----------------------------------------
+print("Registering environments...")
 
 register(
     id='Copy-v0',
@@ -146,21 +147,60 @@ register(
     entry_point='gym.envs.toy_text:KellyCoinflipGeneralizedEnv',
 )
 
-register(
-    id='FrozenLake-v0',
-    entry_point='gym.envs.toy_text:FrozenLakeEnv',
-    kwargs={'map_name' : '4x4'},
-    max_episode_steps=100,
-    reward_threshold=0.78, # optimum = .8196
-)
+# register(
+#     id='FrozenLake-v0',
+#     entry_point='gym.envs.toy_text:FrozenLakeEnv',
+#     kwargs={'map_name' : '4x4', 'mixed_move' : .4},
+#     max_episode_steps=100,
+#     reward_threshold=.8,
+# )
 
-register(
-    id='FrozenLake16x16-v0',
+# register(
+#     id='FrozenLake16x16-v0',
+#     entry_point='gym.envs.toy_text:FrozenLakeEnv',
+#     kwargs={'map_name' : '16x16'},
+#     max_episode_steps=400,
+#     reward_threshold=0.8, 
+# )
+
+frozenLake4x4Env = {}
+frozenLake16x16Env = {}
+
+fl_4_mixed_move = np.arange(1/3, 1.0, 1/33) #, length 23
+fl_4_reward_threshold = np.arange(.5,1.01,.05)#,length 11
+
+#34 total tests for Frozen Lakes
+for i in range(0,len(fl_4_mixed_move)):
+    
+    frozenLake4x4Env['FrozenLake-v{0}'.format(i)] = [fl_4_mixed_move[i],.8]
+    frozenLake16x16Env['FrozenLake16x16-v{0}'.format(i)] = [fl_4_mixed_move[i],.8]
+
+count = 0
+for i in range(len(frozenLake4x4Env),len(frozenLake4x4Env)+len(fl_4_reward_threshold)):
+
+        frozenLake4x4Env['FrozenLake-v{0}'.format(i)] = [.8,fl_4_reward_threshold[count]]
+        frozenLake16x16Env['FrozenLake16x16-v{0}'.format(i)] = [.8,fl_4_reward_threshold[count]]
+        count += 1
+        
+for i in frozenLake4x4Env:
+    register(
+    id=str(i),
     entry_point='gym.envs.toy_text:FrozenLakeEnv',
-    kwargs={'map_name' : '16x16'},
-    max_episode_steps=400,
-    reward_threshold=0.99, # optimum = 1
+    kwargs={'map_name' : '4x4', 'mixed_move' : frozenLake4x4Env[str(i)][0]},
+    max_episode_steps=100,
+    reward_threshold=frozenLake4x4Env[str(i)][1],
 )
+print('Finished registering 4x4 Frozen Lake environments...')
+
+for i in frozenLake16x16Env:
+    register(
+    id=str(i),
+    entry_point='gym.envs.toy_text:FrozenLakeEnv',
+    kwargs={'map_name' : '16x16', 'mixed_move' : frozenLake16x16Env[str(i)][0]},
+    max_episode_steps=400,
+    reward_threshold=frozenLake16x16Env[str(i)][1],
+)
+print('Finished registering 16x16 Frozen Lake environments...')
 
 register(
     id='CliffWalking-v0',
